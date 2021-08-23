@@ -19,9 +19,30 @@ namespace RestWithAPSNETUdemy.Controllers
         }
 
         [HttpGet("sum/{firstNumber}/{secondNumber}")]
-        public IActionResult Get(double firstNumber, double secondNumber)
+        public IActionResult Sum(double firstNumber, double secondNumber)
         {
             double result = firstNumber + secondNumber;
+            return Ok(result.ToString());
+        }
+
+        [HttpGet("subtraction/{firstNumber}/{secondNumber}")]
+        public IActionResult Subtraction(double firstNumber, double secondNumber)
+        {
+            double result = firstNumber - secondNumber;
+            return Ok(result.ToString());
+        }
+
+        [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
+        public IActionResult Multiplication(double firstNumber, double secondNumber)
+        {
+            double result = firstNumber * secondNumber;
+            return Ok(result.ToString());
+        }
+
+        [HttpGet("division/{firstNumber}/{secondNumber}")]
+        public IActionResult Division(double firstNumber, double secondNumber)
+        {
+            double result = firstNumber / secondNumber;
             return Ok(result.ToString());
         }
     }
