@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RestWithAPSNETUdemy.Model.Context;
+using RestWithAPSNETUdemy.Services.Implementations;
 
 namespace RestWithAPSNETUdemy
 {
@@ -32,6 +28,10 @@ namespace RestWithAPSNETUdemy
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestWithAPSNETUdemy", Version = "v1" });
             });
+            string connection = Configuration.GetValue<string>("MySQLConnection:MySQLConnectionString");
+            services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+
+            services.AddScoped<IPersonService, PersonServiceImplementation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
