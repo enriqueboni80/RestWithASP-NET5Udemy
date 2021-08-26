@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using RestWithAPSNETUdemy.Model.Context;
-using RestWithAPSNETUdemy.Services.Implementations;
+using RestWithAPSNETUdemy.Repository.Implementations;
 
 namespace RestWithAPSNETUdemy
 {
@@ -31,7 +31,9 @@ namespace RestWithAPSNETUdemy
             string connection = Configuration.GetValue<string>("MySQLConnection:MySQLConnectionString");
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
 
-            services.AddScoped<IPersonService, PersonServiceImplementation>();
+            services.AddApiVersioning();
+            
+            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
