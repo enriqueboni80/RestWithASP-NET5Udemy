@@ -43,7 +43,7 @@ namespace RestWithAPSNETUdemy.Repository.Implementations
         public Person Update(Person person)
         {
 
-            if (!Exists(person.Id)) return new Person();
+            if (!Exists(person.Id)) return null;
             var result = _context.Persons.SingleOrDefault(p => p.Id.Equals(person.Id));
             if (result != null)
             {
@@ -67,7 +67,7 @@ namespace RestWithAPSNETUdemy.Repository.Implementations
             {
                 try
                 {
-                    _context.Entry(result).CurrentValues.SetValues(result);
+                    _context.Persons.Remove(result);
                     _context.SaveChanges();
                 }
                 catch (Exception)
