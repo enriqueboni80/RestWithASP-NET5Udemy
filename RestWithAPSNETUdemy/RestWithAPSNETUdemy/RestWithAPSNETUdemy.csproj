@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Docker\" />
+    <Folder Include="Repository\Implementations\" />
   </ItemGroup>
 
 </Project>

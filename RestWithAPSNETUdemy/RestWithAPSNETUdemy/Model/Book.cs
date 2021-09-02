@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using RestWithAPSNETUdemy.Model.Base;
 
 namespace RestWithAPSNETUdemy.Model
 {
     [Table("book")]
-    public class Book
+    public class Book : BaseEntity
     {
-        [Column("id")]
-        public long Id { get; set; }
         [Column("name")]
         public string Name { get; set; }
         [Column("autor")]
